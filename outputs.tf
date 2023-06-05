@@ -1,0 +1,12 @@
+output "hostname" {
+  value = docker_container.server.hostname
+}
+
+output "port" {
+  value = var.port
+}
+
+output "password" {
+  value     = var.password
+  sensitive = true
+}
