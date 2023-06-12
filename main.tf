@@ -26,8 +26,8 @@ resource "docker_container" "server" {
   } */
 
   volumes {
-    container_path = "/data"
-    host_path      = "${var.data_directory}/${var.identifier}/data"
+    container_path = local.container_data_directory
+    host_path      = local.host_data_directory
     read_only      = false
   }
 }
