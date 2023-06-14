@@ -17,10 +17,20 @@ variable "data_directory" {
 
 # Logging
 
-variable "error_log_level" {
+variable "log_level" {
   type    = string
-  default = "warn"
-  # TODO check if ...
+  default = "warning"
+
+  validation {
+    condition     = contains(["debug", "verbose", "notice", "warning"], var.log_level)
+    error_message = "Log level should be one of `debug`, `verbose`, `notice`, `warning`"
+  }
+}
+
+variable "databases" {
+  type        = number
+  default     = 1
+  description = "Set the number of databases"
 }
 
 # Authentication

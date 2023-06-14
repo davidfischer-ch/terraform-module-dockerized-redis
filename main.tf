@@ -1,5 +1,11 @@
 resource "docker_container" "server" {
 
+  lifecycle {
+    replace_triggered_by = [
+      local_sensitive_file.main_config
+    ]
+  }
+
   image = var.image_id
   name  = var.identifier
 
@@ -10,6 +16,8 @@ resource "docker_container" "server" {
 
   # shm_size = 256 # MB
 
+  command = ["redis-server", "${local.container_config_directory}/redis.conf"]
+
   hostname = var.identifier
 
   networks_advanced {
@@ -19,11 +27,11 @@ resource "docker_container" "server" {
   env = [
   ]
 
-  /* volumes {
-    container_path = "/etc/redis/redis.conf"
-    host_path      = local_file.main_config.filename
+  volumes {
+    container_path = "${local.container_config_directory}/redis.conf"
+    host_path      = local_sensitive_file.main_config.filename
     read_only      = true
-  } */
+  }
 
   volumes {
     container_path = local.container_data_directory

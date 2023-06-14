@@ -1,9 +1,14 @@
 locals {
-  container_data_directory = "/data"
-  host_data_directory      = "${var.data_directory}/data"
+  container_config_directory = "/etc/redis"
+  container_data_directory   = "/var/lib/redis"
+  host_data_directory        = "${var.data_directory}/data"
 
   forced_context = {
     bind_address = "* -::*"
-    port         = 6379
+    databases    = var.databases
+    directory    = local.container_data_directory
+    log_level    = var.log_level
+    password     = var.password
+    port         = var.port
   }
 }
