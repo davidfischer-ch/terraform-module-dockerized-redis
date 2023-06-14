@@ -1,6 +1,7 @@
 locals {
   container_config_directory = "/etc/redis"
   container_data_directory   = "/var/lib/redis"
+  host_config_directory      = "${var.data_directory}/config"
   host_data_directory        = "${var.data_directory}/data"
 
   forced_context = {
