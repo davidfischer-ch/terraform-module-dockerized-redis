@@ -7,7 +7,7 @@ data "jinja_template" "main_config" {
 }
 
 resource "local_sensitive_file" "main_config" {
-  filename             = "${local.container_config_directory}/redis.conf"
+  filename             = "${local.host_config_directory}/redis.conf"
   content              = data.jinja_template.main_config.result
   file_permission      = "0644"
   directory_permission = "0755"
