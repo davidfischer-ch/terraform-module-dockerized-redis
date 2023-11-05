@@ -60,6 +60,6 @@ variable "port" {
 
   validation {
     condition     = var.port == 6379
-    error_message = "Having `port` different than 5432 is not yet implemented."
+    error_message = "Having `port` different than 6379 is not yet implemented."
   }
 }
