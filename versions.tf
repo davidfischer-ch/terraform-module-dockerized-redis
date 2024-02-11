@@ -9,12 +9,12 @@ terraform {
 
     jinja = {
       source  = "NikolaLohinski/jinja"
-      version = ">= 1.15.0"
+      version = ">= 1.17.0"
     }
 
     local = {
       source  = "hashicorp/local"
-      version = ">= 2.4.0"
+      version = ">= 2.4.1"
     }
   }
 }
