@@ -22,7 +22,7 @@ variable "data_directory" {
   description = "Where data will be persisted (volumes will be mounted as sub-directories)."
 }
 
-# Logging
+# Logging ------------------------------------------------------------------------------------------
 
 variable "log_level" {
   type    = string
@@ -40,14 +40,20 @@ variable "databases" {
   description = "Set the number of databases."
 }
 
-# Authentication
+# Authentication -----------------------------------------------------------------------------------
 
 variable "password" {
   type      = string
   sensitive = true
 }
 
-# Networking
+# Networking ---------------------------------------------------------------------------------------
+
+variable "hosts" {
+  type        = map(string)
+  default     = {}
+  description = "Add entries to container hosts file."
+}
 
 variable "network_id" {
   type        = string

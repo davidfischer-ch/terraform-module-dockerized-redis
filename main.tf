@@ -18,14 +18,21 @@ resource "docker_container" "server" {
 
   command = ["redis-server", "${local.container_config_directory}/redis.conf"]
 
+  env = []
+
+  dynamic "host" {
+    for_each = var.hosts
+    content {
+      host = host.key
+      ip   = host.value
+    }
+  }
+
   hostname = var.identifier
 
   networks_advanced {
     name = var.network_id
   }
-
-  env = [
-  ]
 
   volumes {
     container_path = "${local.container_config_directory}/redis.conf"
