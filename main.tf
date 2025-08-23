@@ -34,6 +34,8 @@ resource "docker_container" "server" {
     name = var.network_id
   }
 
+  network_mode = "bridge"
+
   # Data owner root:root
   volumes {
     container_path = "${local.container_config_directory}/redis.conf"
