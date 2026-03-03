@@ -9,6 +9,8 @@ Manage Redis server.
 
 ## Usage
 
+See [examples/default](examples/default) for a complete working configuration.
+
 ```hcl
 module "redis" {
   source = "git::https://github.com/davidfischer-ch/terraform-module-dockerized-redis.git?ref=1.0.2"
