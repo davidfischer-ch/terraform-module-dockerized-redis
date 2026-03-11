@@ -46,8 +46,12 @@ data_directory/
 | `enabled` | `bool` | — | Start or stop the container. |
 | `wait` | `bool` | `false` | Wait for the container to reach a healthy state after creation. |
 | `image_id` | `string` | — | [Redis](https://hub.docker.com/_/redis/tags) Docker image's ID. |
+| `app_uid` | `number` | `999` | UID of the user running the container and owning the data directories. |
+| `app_gid` | `number` | `999` | GID of the user running the container and owning the data directories. |
+| `privileged` | `bool` | `false` | Run the container in privileged mode. |
+| `cap_add` | `set(string)` | `[]` | Linux capabilities to add to the container. |
+| `cap_drop` | `set(string)` | `[]` | Linux capabilities to drop from the container. |
 | `data_directory` | `string` | — | Host path for persistent volumes. |
-| `data_owner` | `string` | `"999:999"` | UID:GID for data directories. |
 | `log_level` | `string` | `"warning"` | Redis log level (`debug`, `verbose`, `notice`, `warning`). |
 | `databases` | `number` | `1` | Number of databases. |
 | `password` | `string` | — | Authentication password (sensitive). |
