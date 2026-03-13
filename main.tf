@@ -14,6 +14,14 @@ resource "docker_container" "server" {
   restart  = "always"
   wait     = var.wait
 
+  healthcheck {
+    test         = ["CMD", "redis-cli", "-a", var.password, "--no-auth-warning", "ping"]
+    interval     = "10s"
+    timeout      = "5s"
+    retries      = 3
+    start_period = "5s"
+  }
+
   privileged = var.privileged
 
   dynamic "capabilities" {
