@@ -17,7 +17,6 @@ module "broker" {
   source = "git::https://github.com/davidfischer-ch/terraform-module-dockerized-redis.git?ref=1.1.0"
 
   identifier     = "my-app-broker"
-  enabled        = true
   image_id       = docker_image.redis.image_id
   data_directory = "/data/my-app/broker"
 
