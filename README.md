@@ -13,7 +13,7 @@ See [examples/default](examples/default) for a complete working configuration.
 
 ```hcl
 module "redis" {
-  source = "git::https://github.com/davidfischer-ch/terraform-module-dockerized-redis.git?ref=1.1.0"
+  source = "git::https://github.com/davidfischer-ch/terraform-module-dockerized-redis.git?ref=1.1.1"
 
   identifier     = "my-app-broker"
   image_id       = docker_image.redis.image_id
