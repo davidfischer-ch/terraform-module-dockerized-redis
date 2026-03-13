@@ -1,6 +1,7 @@
 variable "identifier" {
   type        = string
   description = "Identifier (must be unique, used to name resources)."
+
   validation {
     condition     = regex("^[a-z]+(-[a-z0-9]+)*$", var.identifier) != null
     error_message = "Argument `identifier` must match regex ^[a-z]+(-[a-z0-9]+)*$."
@@ -9,14 +10,14 @@ variable "identifier" {
 
 variable "enabled" {
   type        = bool
-  default     = true
   description = "Toggle the containers (started or stopped)."
+  default     = true
 }
 
 variable "wait" {
   type        = bool
-  default     = true
   description = "Wait for the container to reach an healthy state after creation."
+  default     = true
 }
 
 variable "image_id" {
@@ -28,32 +29,32 @@ variable "image_id" {
 
 variable "app_uid" {
   type        = number
-  default     = 999
   description = "UID of the user running the container and owning the data directories."
+  default     = 999
 }
 
 variable "app_gid" {
   type        = number
-  default     = 999
   description = "GID of the user running the container and owning the data directories."
+  default     = 999
 }
 
 variable "privileged" {
   type        = bool
-  default     = false
   description = "Run the container in privileged mode."
+  default     = false
 }
 
 variable "cap_add" {
   type        = set(string)
-  default     = []
   description = "Linux capabilities to add to the container."
+  default     = []
 }
 
 variable "cap_drop" {
   type        = set(string)
-  default     = []
   description = "Linux capabilities to drop from the container."
+  default     = []
 }
 
 # Storage ------------------------------------------------------------------------------------------
@@ -66,8 +67,9 @@ variable "data_directory" {
 # Logging ------------------------------------------------------------------------------------------
 
 variable "log_level" {
-  type    = string
-  default = "warning"
+  type        = string
+  description = "Redis log level."
+  default     = "warning"
 
   validation {
     condition     = contains(["debug", "verbose", "notice", "warning"], var.log_level)
@@ -77,23 +79,29 @@ variable "log_level" {
 
 variable "databases" {
   type        = number
-  default     = 1
   description = "Set the number of databases."
+  default     = 1
+
+  validation {
+    condition     = var.databases >= 1
+    error_message = "Argument `databases` must be at least 1."
+  }
 }
 
 # Authentication -----------------------------------------------------------------------------------
 
 variable "password" {
-  type      = string
-  sensitive = true
+  type        = string
+  description = "Redis authentication password."
+  sensitive   = true
 }
 
 # Networking ---------------------------------------------------------------------------------------
 
 variable "hosts" {
   type        = map(string)
-  default     = {}
   description = "Add entries to container hosts file."
+  default     = {}
 }
 
 variable "network_id" {
@@ -102,8 +110,9 @@ variable "network_id" {
 }
 
 variable "port" {
-  type    = number
-  default = 6379
+  type        = number
+  description = "Bind the Redis port."
+  default     = 6379
 
   validation {
     condition     = var.port == 6379

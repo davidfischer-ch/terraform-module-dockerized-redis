@@ -1,12 +1,15 @@
 output "host" {
-  value = docker_container.server.hostname
+  description = "Hostname of the Redis container."
+  value       = docker_container.server.hostname
 }
 
 output "port" {
-  value = var.port
+  description = "Port bound by Redis."
+  value       = var.port
 }
 
 output "password" {
-  value     = var.password
-  sensitive = true
+  description = "Redis authentication password."
+  sensitive   = true
+  value       = var.password
 }
