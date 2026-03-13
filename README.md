@@ -13,16 +13,26 @@ See [examples/default](examples/default) for a complete working configuration.
 
 ```hcl
 module "redis" {
-  source = "git::https://github.com/davidfischer-ch/terraform-module-dockerized-redis.git?ref=1.1.1"
+  source = "git::https://github.com/davidfischer-ch/terraform-module-dockerized-redis.git?ref=1.2.0"
 
-  identifier     = "my-app-broker"
-  image_id       = docker_image.redis.image_id
-  data_directory = "/data/my-app/broker"
+  identifier = "my-app-broker"
+  image_id   = docker_image.redis.image_id
+
+  # Networking
 
   hosts      = { "myserver" = "10.0.0.1" }
   network_id = docker_network.app.id
 
+  # Storage
+
+  data_directory = "/data/my-app/broker"
+
+  # Configuration
+
   databases = 2
+
+  # Authentication
+
   password  = random_password.broker.result
 }
 ```
