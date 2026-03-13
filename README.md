@@ -50,13 +50,13 @@ data_directory/
 | `privileged` | `bool` | `false` | Run the container in privileged mode. |
 | `cap_add` | `set(string)` | `[]` | Linux capabilities to add to the container. |
 | `cap_drop` | `set(string)` | `[]` | Linux capabilities to drop from the container. |
+| `hosts` | `map(string)` | `{}` | Extra `/etc/hosts` entries for the container. |
+| `network_id` | `string` | — | Docker network to attach to. |
+| `port` | `number` | `6379` | Redis port (changing not yet implemented). |
 | `data_directory` | `string` | — | Host path for persistent volumes. |
 | `log_level` | `string` | `"warning"` | Redis log level (`debug`, `verbose`, `notice`, `warning`). |
 | `databases` | `number` | `1` | Number of databases. |
 | `password` | `string` | — | Authentication password (sensitive). |
-| `hosts` | `map(string)` | `{}` | Extra `/etc/hosts` entries for the container. |
-| `network_id` | `string` | — | Docker network to attach to. |
-| `port` | `number` | `6379` | Redis port (changing not yet implemented). |
 
 ## Outputs
 

@@ -57,6 +57,30 @@ variable "cap_drop" {
   default     = []
 }
 
+# Networking ---------------------------------------------------------------------------------------
+
+variable "hosts" {
+  type        = map(string)
+  description = "Add entries to container hosts file."
+  default     = {}
+}
+
+variable "network_id" {
+  type        = string
+  description = "Attach the containers to given network."
+}
+
+variable "port" {
+  type        = number
+  description = "Bind the Redis port."
+  default     = 6379
+
+  validation {
+    condition     = var.port == 6379
+    error_message = "Having `port` different than 6379 is not yet implemented."
+  }
+}
+
 # Storage ------------------------------------------------------------------------------------------
 
 variable "data_directory" {
@@ -64,7 +88,7 @@ variable "data_directory" {
   description = "Where data will be persisted (volumes will be mounted as sub-directories)."
 }
 
-# Logging ------------------------------------------------------------------------------------------
+# Configuration ------------------------------------------------------------------------------------
 
 variable "log_level" {
   type        = string
@@ -94,28 +118,4 @@ variable "password" {
   type        = string
   description = "Redis authentication password."
   sensitive   = true
-}
-
-# Networking ---------------------------------------------------------------------------------------
-
-variable "hosts" {
-  type        = map(string)
-  description = "Add entries to container hosts file."
-  default     = {}
-}
-
-variable "network_id" {
-  type        = string
-  description = "Attach the containers to given network."
-}
-
-variable "port" {
-  type        = number
-  description = "Bind the Redis port."
-  default     = 6379
-
-  validation {
-    condition     = var.port == 6379
-    error_message = "Having `port` different than 6379 is not yet implemented."
-  }
 }
